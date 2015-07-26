@@ -19,8 +19,7 @@ MainLayout = React.createClass({
       <header><h1>Kadira Blog</h1></header>
       <p>
         Navigation:&nbsp;
-        <a href="/">Home</a>&nbsp; | &nbsp;
-        <a href="/add-new-post">Add New Post</a>
+        <a href="/">Home</a> 
         {this.data.user? this.getLogoutButton() : null}
       </p>
       <main>{this.props.content}</main>
@@ -29,19 +28,34 @@ MainLayout = React.createClass({
   }
 });
 
-AddNewPost = React.createClass({
+EditPost = React.createClass({
   mixins: [ReactMeteorData],
   getMeteorData() {
+    var postId = this.props.postId;
+    var post = Posts.findOne({_id: postId});
+    var singlePostReady = Meteor.subscribe('singlePost', postId).ready();
     var data = {
-      authInProcess: Meteor.loggingIn(),
-      canShow: !!Meteor.user()
+      authInProcess: Meteor.loggingIn() || !singlePostReady,
+      canShow: () => {
+        var user = Meteor.user();
+        if(!user) {
+          return false;
+        }
+
+        if(!post) {
+          return false;
+        }
+
+        var hasPermission = post.owner === user._id;
+        return hasPermission;
+      }()
     };
 
     return data;
   },
   getForm() {
     return <p>
-      This is the area for adding a new post
+      {"This is the area for editing the post"}
     </p>;
   },
   noAuthMessage() {
@@ -77,7 +91,10 @@ BlogPost = React.createClass({
   render() {
     return <div>
       <p>
-        <a href="/">Back</a> <br/>
+        <a href="/">Back</a> | &nbsp;
+        <a href="/hello-world/edit">Edit this post</a> 
+      </p>
+      <p>
         This is a single blog post
       </p>
     </div>;

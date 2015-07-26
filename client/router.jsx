@@ -4,9 +4,9 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/add-new-post', {
+FlowRouter.route('/:postId/edit', {
   action(params) {
-    ReactLayout.render(MainLayout, {content: <AddNewPost />});
+    ReactLayout.render(MainLayout, {content: <EditPost {...params} />});
   }
 });
 
