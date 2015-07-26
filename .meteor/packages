@@ -5,8 +5,8 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
-insecure
 react
+autopublish
+accounts-password
 kadira:flow-router
 kadira:react-layout
