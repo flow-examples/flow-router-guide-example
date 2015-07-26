@@ -4,8 +4,9 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/:postId', {
+FlowRouter.route('/blog/:category/:postId', {
+  name: 'blogPost',
   action: function() {
-    BlazeLayout.render("mainLayout", {content: "blogPost"});
+    BlazeLayout.render("mainLayout", {content: "blogPost"}); 
   }
 });

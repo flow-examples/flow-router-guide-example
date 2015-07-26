@@ -8,9 +8,13 @@
 
 <template name="blogHome">
   <p>This is the home page of our blog</p>
-  <p>
-    <a href="/hello-world">See Hello World Post</a>
-  </p>
+  <ul>
+  {{#each posts}}
+    <li>
+      <a href={{pathForPost}}>{{title}}</a>
+    </li>
+  {{/each}}
+  </ul>
 </template>
 
 <template name="blogPost">
