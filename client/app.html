@@ -15,7 +15,7 @@
 
 <template name="blogPost">
   <a href="/">Back</a>
-  {{#if Template.subscriptionsReady}}
+  {{#if postReady}}
     {{#with post}}
       <h3>{{title}}</h3>
       <p>{{content}}</p>
