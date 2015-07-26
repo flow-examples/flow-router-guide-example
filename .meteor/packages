@@ -8,3 +8,4 @@ meteor-platform
 react
 kadira:flow-router
 kadira:react-layout
+meteorhacks:subs-manager

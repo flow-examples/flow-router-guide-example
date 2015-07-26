@@ -1,3 +1,5 @@
+PostSubs = new SubsManager();
+
 MainLayout = React.createClass({
   render() {
     return <div>
@@ -24,7 +26,7 @@ BlogPost = React.createClass({
   getMeteorData() {
     var data = {};
     var postId = this.props.postId;
-    var handle = Meteor.subscribe('singlePost', postId);
+    var handle = PostSubs.subscribe('singlePost', postId);
     if(handle.ready()) {
       data.post = Posts.findOne({_id: postId});
     }
