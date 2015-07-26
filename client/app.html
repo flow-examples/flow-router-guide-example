@@ -1,5 +1,12 @@
 <template name="mainLayout">
   <header><h1>Kadira Blog</h1></header>
+  <p>Navigation: 
+    <a href="/">Home</a>
+    | <a href="/add-new-post">Add New Post</a>
+    {{#if currentUser}}
+      | <button id="logout">Logout</button>
+    {{/if}}
+  </p>
   <main>
     {{>Template.dynamic template=content}}
   </main>
@@ -17,5 +24,24 @@
   <p>
     <a href="/">Back</a> <br/>
     This is a single blog post
+  </p>
+</template>
+
+<template name="addNewPost">
+  {{#if authInProcess}}
+    <p>loading ...</p>
+  {{else}}
+    {{#if canShow}}
+      <p>This is the area for adding a new post</p>
+    {{else}}
+      <p>You are not authorized to view this page.</p>
+      {{>login}}
+    {{/if}}
+  {{/if}}
+</template>
+
+<template name="login">
+  <p>
+    <button>Login Now</button>
   </p>
 </template>
