@@ -20,12 +20,26 @@ BlogHome = React.createClass({
 });
 
 BlogPost = React.createClass({
+  mixins: [ReactMeteorData],
+  getMeteorData() {
+    var data = {};
+    var postId = this.props.postId;
+    var handle = Meteor.subscribe('singlePost', postId);
+    if(handle.ready()) {
+      data.post = Posts.findOne({_id: postId});
+    }
+    return data;
+  },
+  getContent() {
+    return <div>
+      <h3>{this.data.post.title}</h3>
+      <p>{this.data.post.content}</p>
+    </div>;
+  },
   render() {
     return <div>
-      <p>
-        <a href="/">Back</a> <br/>
-        This is a single blog post
-      </p>
-    </div>;
+      <a href="/">Back</a>
+      {this.data.post? this.getContent() : <p>Loading...</p>}
+    </div>
   }
 });
