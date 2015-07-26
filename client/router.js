@@ -4,9 +4,9 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/add-new-post', {
+FlowRouter.route('/:postId/edit', {
   action: function() {
-    BlazeLayout.render("mainLayout", {content: "addNewPost"});
+    BlazeLayout.render("mainLayout", {content: "editPost"});
   }
 });
 

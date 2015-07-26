@@ -2,7 +2,6 @@
   <header><h1>Kadira Blog</h1></header>
   <p>Navigation: 
     <a href="/">Home</a>
-    | <a href="/add-new-post">Add New Post</a>
     {{#if currentUser}}
       | <button id="logout">Logout</button>
     {{/if}}
@@ -22,17 +21,19 @@
 
 <template name="blogPost">
   <p>
-    <a href="/">Back</a> <br/>
+    <a href="/">Back</a> | <a href="/hello-world/edit">Edit this post</a>
+  </p>
+  <p>
     This is a single blog post
   </p>
 </template>
 
-<template name="addNewPost">
+<template name="editPost">
   {{#if authInProcess}}
     <p>loading ...</p>
   {{else}}
     {{#if canShow}}
-      <p>This is the area for adding a new post</p>
+      <p>This is the area for editing the post</p>
     {{else}}
       <p>You are not authorized to view this page.</p>
       {{>login}}
@@ -42,6 +43,7 @@
 
 <template name="login">
   <p>
-    <button>Login Now</button>
+    <button id="login-wrong-user">Login As a Wrong User</button>
+    <button id="login-correct-user">Login As the Correct User</button>
   </p>
 </template>

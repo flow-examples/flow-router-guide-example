@@ -8,3 +8,4 @@ meteor-platform
 kadira:blaze-layout
 kadira:flow-router
 accounts-password
+reactive-var
