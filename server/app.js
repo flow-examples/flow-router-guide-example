@@ -1,10 +1,9 @@
-if(!Posts.findOne()) {
-  Posts.insert({
-    _id: "hello-world",
-    title: "Hello World Post",
-    content: "This is the content"
-  });
-}
+Posts.remove({});
+Posts.insert({
+  _id: "hello-world",
+  title: "Hello World Post",
+  content: "This is the content"
+});
 
 Meteor.publish('singlePost', function(id) {
   check(id, String);
