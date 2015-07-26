@@ -7,5 +7,6 @@
 meteor-platform
 autopublish
 insecure
-meteorhacks:flow-router
-kadira:blaze-layout
+react
+kadira:flow-router
+kadira:react-layout
